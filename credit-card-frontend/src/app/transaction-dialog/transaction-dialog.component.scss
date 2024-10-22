@@ -1,0 +1,27 @@
+.mat-form-field {
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-dialog-content {
+  min-width: 300px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+mat-dialog-content .mat-mdc-option {
+  background-color: white;
+}
+
+.mat-mdc-dialog-container h1.mat-mdc-dialog-title.mdc-dialog__title {
+  padding-left: 0;
+}

@@ -1,0 +1,52 @@
+<div class="body" >
+    <h4>Tilføj nyt kreditkort</h4>
+    <form class="formbox" [formGroup]="cardForm"  (ngSubmit)="onSubmit()">
+        <label class="custom-label" for="cardholder_name">
+        <input id="cardholder_name" type="text"  formControlName="cardholder_name" required>
+            <span class="placeholder">Kreditkort navn</span>
+    </label>
+        <label class="custom-label" for="card_number" >
+        <input id="card_number" type="number" formControlName="card_number" required>
+        <span class="placeholder">Kortnummer</span>
+        @if(cardForm.controls.card_number.invalid && cardForm.controls.card_number.touched){
+            <div class="validationAlert">
+                Kortnummer er ikke gyldigt - skal være 7 til 16 cifre
+            </div>
+        }</label>
+        <label class="custom-label" for="csc_code">
+        <input id="csc_code" type="number" formControlName="csc_code" required>
+        <span class="placeholder">Csc kode:</span>
+        @if(cardForm.controls.csc_code.invalid && cardForm.controls.csc_code.touched){
+            <div class="validationAlert">
+                css kode er ugyldig - skal være 3 cifre
+            </div>
+        }</label>
+        <label class="custom-label" for="expiration_date_month">
+        <input id="expiration_date_month" type="number" formControlName="expiration_date_month" min="1" max="12" required>
+        <span class="placeholder">Udløbs måned: </span>
+        @if(cardForm.controls.expiration_date_month.invalid && cardForm.controls.expiration_date_month.touched){
+            <div class="validationAlert">
+                måned er ugyldig - skal være et nummer mellem 1 og 12
+            </div>
+        }</label>
+        <label class="custom-label" for="expiration_date_year">
+        <input id="expiration_date_year" type="number" formControlName="expiration_date_year" min="2000" required>
+        <span class="placeholder">Udløbs år: </span>
+        @if(cardForm.controls.expiration_date_year.invalid && cardForm.controls.expiration_date_year.touched){
+            <div class="validationAlert">
+                år er ugyldig - skal være 4 cifre
+            </div>
+        }</label>
+        <label class="custom-label" for="issuer">
+        <input id="issuer" type="text" formControlName="issuer" required>
+        <span class="placeholder">Udsteder: </span>
+        @if(cardForm.controls.issuer.invalid && cardForm.controls.issuer.touched){
+            <div class="validationAlert">
+                udsteder skal være udfyldt
+            </div>
+        }</label>
+        <button class="custom-button" type="submit" [disabled]="cardForm.invalid">Tilføj</button>
+    </form>
+</div>
+
+

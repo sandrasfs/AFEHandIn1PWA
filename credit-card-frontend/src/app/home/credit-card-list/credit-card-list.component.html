@@ -1,0 +1,15 @@
+<p class="information">Here kan du se en liste af kreditkort</p>
+<table>
+    <tr class="tr-header">
+        <td class="header-cells">Kortnummer</td>
+        <td class="header-cells">Kortholders navn</td>
+        <td class="header-cells">Udsteder</td>
+    </tr>
+    @for(card of creditCards$ | async ; track card.card_number; let index =$index){
+    <tr routerLink="{{card.card_number}}">
+        <td>{{card.card_number}}</td>
+        <td>{{card.cardholder_name}}</td>
+        <td>{{card.issuer}}</td>
+    </tr>
+     }
+</table>

@@ -1,0 +1,51 @@
+.information{
+  width: 100%;
+  text-align: center;
+}
+
+table, th , td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+
+table {
+  border-collapse: separate;
+  padding: 20px 75px;
+  background-image:url(natural-background-with-empty-wooden-table-picjumbo-com.jpeg);
+}
+  
+table tr:nth-child(odd):not(:first-child) {
+    background-color: #f1f1f1;
+  }
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+table tr:not(:first-child):hover {
+  border: black;
+  background-image: linear-gradient(rgb(158, 204, 133), rgb(60, 102, 59));
+  color: white;
+  
+  //background-color: rgb(200, 204, 235);
+  cursor: pointer; 
+}
+
+tr:first-of-type{
+    //background-color: rgb(104, 122, 182);
+    background-color: transparent;
+    text-align: center;
+    color: white;
+    letter-spacing: 3px;   
+}
+
+td{
+  width: 250px;
+  height: 35px;
+  padding-left: 10px;
+}
+
+.header-cells{
+  border: solid 1px white;
+}

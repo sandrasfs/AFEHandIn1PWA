@@ -1,0 +1,80 @@
+<h1 mat-dialog-title>Ny Transaktion</h1>
+<div mat-dialog-content>
+  <form [formGroup]="transactionForm">
+    <mat-form-field appearance="fill">
+      <input matInput formControlName="amount" type="number" placeholder="Indtast beløb" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input matInput formControlName="comment" placeholder="Tilføj kommentar" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-select formControlName="currency" placeholder="Valuta">
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{ currency }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vælg en dato</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>    
+
+    <h2 style="font-size: 24px;">Kreditkortoplysninger</h2>
+
+    <mat-form-field>
+      <mat-label>Vælg et kreditkort</mat-label>
+      <mat-select formControlName="creditCardNumber" (selectionChange)="onCreditCardChange()">
+        @if (creditCards$ | async; as creditCards) {
+          @for (card of creditCards; track card.card_number) {
+            <mat-option [value]="card.card_number">
+              {{ card.card_number }}, {{ card.cardholder_name }}
+            </mat-option>
+          }
+          @empty {
+            <mat-option disabled>Ingen kreditkort er tilgængelige</mat-option>
+          }
+        }
+      </mat-select>
+    </mat-form-field>    
+    
+    <div formGroupName="credit_card">
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="card_number" placeholder="Kortnummer" [disabled]="true" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="csc_code" placeholder="CSC-kode" [type]="hide() ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide CSC code'"
+          [attr.aria-pressed]="hide()">
+          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="cardholder_name" placeholder="Kortindehaverens navn" [disabled]="true" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="expiration_date_month" placeholder="MM" [disabled]="true" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="expiration_date_year" placeholder="YYYY" [disabled]="true" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input matInput formControlName="issuer" placeholder="Kortudsteder" [disabled]="true" />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Annuller</button>
+  <button mat-button (click)="onSubmit()">Gem</button>
+</div>
